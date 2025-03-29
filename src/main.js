@@ -29,7 +29,7 @@ export default async ({ req, res, log, error }) => {
       let success = false;
       while (!success) {
         try {
-          certID = `V${id.toString().padStart(6, 0)}/${year}`;
+          let certID = `V${id.toString().padStart(6, 0)}/${year}`;
           await database.createDocument('sam-core', 'certificates', ID.unique(), {
             name: mailObj.name,
             email: mailObj.email,
