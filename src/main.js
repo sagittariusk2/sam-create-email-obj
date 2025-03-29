@@ -14,7 +14,7 @@ export default async ({ req, res, log, error }) => {
     var obj = await database.getDocument('sam-core', 'email-lists', doc);
     obj.list = obj.list.map((x) => JSON.parse(x));
 
-    for (let mailObj of obj) {
+    for (let mailObj of obj.list) {
       await database.createDocument('sam-core', 'certificates', ID.unique(), {
         name: mailObj.name,
         email: mailObj.email,
