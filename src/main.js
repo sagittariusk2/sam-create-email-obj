@@ -16,11 +16,11 @@ export default async ({ req, res, log, error }) => {
 
     let x = (await database.getDocument("sam-core", "metadata", 'metadata-doc')).lastCertId;
     let year = parseInt(x.split("/")[1]);
-    let id = parseInt(x.split("/")[0].substring(1));
+    let id = parseInt(x.split("/")[0].substring(1))+1;
 
     const currentYear = new Date().getFullYear();
     if(currentYear !== year) {
-      id = 0;
+      id = 1;
       year = currentYear;
     }
   
