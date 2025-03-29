@@ -11,14 +11,10 @@ export default async ({ req, res, log, error }) => {
   log(`< [DOC: ${doc}] >`);
 
   try {
-    await database.updateDocument('sam-core', 'email-lists', doc, {
-      status: 'IN_PROGRESS',
-    });
-    
     var obj = await database.getDocument('sam-core', 'email-lists', doc);
     obj.list = obj.list.map((x) => JSON.parse(x));
 
-    let x = (await database.getDocument("sam-core", "metadata", "'sam-core'")).lastCertId;
+    let x = (await database.getDocument("sam-core", "metadata", 'sam-core')).lastCertId;
     let year = parseInt(x.split("/")[1]);
     let id = parseInt(x.split("/")[0].substring(1));
 
