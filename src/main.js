@@ -14,7 +14,7 @@ export default async ({ req, res, log, error }) => {
     var obj = await database.getDocument('sam-core', 'email-lists', doc);
     obj.list = obj.list.map((x) => JSON.parse(x));
 
-    let x = (await database.getDocument("sam-core", "metadata", 'sam-core')).lastCertId;
+    let x = (await database.getDocument("sam-core", "metadata", 'metadata-doc')).lastCertId;
     let year = parseInt(x.split("/")[1]);
     let id = parseInt(x.split("/")[0].substring(1));
 
@@ -38,7 +38,7 @@ export default async ({ req, res, log, error }) => {
             certificate_id: certID
           });
           log('Created the certificate with id - ' + certID);
-          await database.updateDocument('sam-core', "metadata", 'sam-core', {lastCertId: certID})
+          await database.updateDocument('sam-core', "metadata", 'metadata-doc', {lastCertId: certID})
           success = true;
         } catch (e) {
           if (e.code === 409) {
