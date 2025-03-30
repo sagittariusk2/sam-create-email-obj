@@ -33,7 +33,7 @@ export default async ({ req, res, log, error }) => {
           await database.createDocument('sam-core', 'certificates', ID.unique(), {
             name: mailObj.name,
             email: mailObj.email,
-            hour: parseInt(mailObj.hour),
+            hour: mailObj.hour,
             email_list_id: doc,
             certificate_id: certID
           });
